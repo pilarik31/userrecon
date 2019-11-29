@@ -11,6 +11,12 @@ class Recon
     {
     }
 
+    /**
+     * Checks if HTTP response is not 3xx or 4xx.
+     *
+     * @param string $url URL to test.
+     * @return boolean True if it's not, otherwise false.
+     */
     public function isNot3xx4xx($url)
     {
         $ch = curl_init();
@@ -41,52 +47,97 @@ class Recon
         curl_close($ch);
     }
 
-    public function setUsername($username)
+    /**
+     * Sets username for testing.
+     *
+     * @param string $username Name of the user to test.
+     * @return void
+     */
+    public function setUsername(string $username)
     {
         $this->username = $username;
     }
 
+    /**
+     * Gets count of check methods.
+     *
+     * @return int Count
+     */
     public function getNumberOfServies()
     {
         return $this->numberOfServies;
     }
 
+    /**
+     * Gets current tested username.
+     *
+     * @return string Username
+     */
     public function getUsername()
     {
         return $this->username;
     }
 
+    /**
+     * Checks if user exists on Instagram.
+     *
+     * @return bool
+     */
     public function checkInstagram()
     {
-        //$response = file_get_contents("https://www.instagram.com/" . $this->username . "/");
         $url = "https://www.instagram.com/" . $this->username;
         return $this->isNot3xx4xx($url);
     }
 
+    /**
+     * Checks if user exists on GitHub.
+     *
+     * @return bool
+     */
     public function checkGitHub()
     {
         $url = "https://github.com/" . $this->username;
         return $this->isNot3xx4xx($url);
     }
 
+    /**
+     * Checks if user exists on Twitter.
+     *
+     * @return bool
+     */
     public function checkTwitter()
     {
         $url = "https://twitter.com/" . $this->username;
         return $this->isNot3xx4xx($url);
     }
 
+    /**
+     * Checks if user exists on Blogger.
+     *
+     * @return bool
+     */
     public function checkBlogspot()
     {
         $url = "http://" . $this->username . ".blogspot.com/";
         return $this->isNot3xx4xx($url);
     }
 
+    /**
+     * Checks if user exists on Reddit.
+     *
+     * @return bool
+     */
     public function checkReddit()
     {
         $url = "https://www.reddit.com/user/" . $this->username;
         return $this->isNot3xx4xx($url);
     }
 
+    /**
+     * Checks if user exists on Wordpress blog. CURRENTLY BROKEN!
+     *
+     * @return bool
+     */
     public function checkWordpress()
     {
         $url = "https://" . $this->username . ".wordpress.com/";
